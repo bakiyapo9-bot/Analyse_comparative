@@ -1,0 +1,33 @@
+{
+  "nombre_produits_comparables": 23,
+  "victoires_enseigne": {
+    "Comptoir Ivoire": 10,
+    "Baobab Shop": 9,
+    "Marché Lagune": 6
+  },
+  "ecart_moyen_fcfa_vs_prix_bas": {
+    "Marché Lagune": 8041.67,
+    "Baobab Shop": 2702.25,
+    "Comptoir Ivoire": 6666.67
+  },
+  "top_3_gains_a_comparer": [
+    {
+      "produit_id": "P11",
+      "produit": "HP 250 G9 Core i5 8 Go 512 Go",
+      "gain_fcfa": 52800,
+      "gain_pct_vs_min": 14.91
+    },
+    {
+      "produit_id": "P09",
+      "produit": "Apple iPhone 13 128 Go",
+      "gain_fcfa": 26500,
+      "gain_pct_vs_min": 6.35
+    },
+    {
+      "produit_id": "P24",
+      "produit": "Climatiseur LG 1 CV",
+      "gain_fcfa": 26000,
+      "gain_pct_vs_min": 10.26
+    }
+  ]
+}

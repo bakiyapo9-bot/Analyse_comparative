@@ -1,0 +1,181 @@
+{
+  "composition": {
+    "P04": 1,
+    "P12": 1,
+    "P14": 2,
+    "P15": 1,
+    "P28": 1
+  },
+  "totaux_par_enseigne": {
+    "Marché Lagune": {
+      "total_fcfa": null,
+      "articles_indisponibles": [
+        "P04"
+      ],
+      "lignes": [
+        {
+          "produit_id": "P04",
+          "produit": "Tecno Spark 20 128 Go",
+          "quantite": 1,
+          "prix_unitaire_fcfa": null,
+          "sous_total_fcfa": null
+        },
+        {
+          "produit_id": "P12",
+          "produit": "Lenovo IdeaPad 3 Core i3 8 Go 256 Go",
+          "quantite": 1,
+          "prix_unitaire_fcfa": 309400,
+          "sous_total_fcfa": 309400
+        },
+        {
+          "produit_id": "P14",
+          "produit": "Clé USB SanDisk 64 Go",
+          "quantite": 2,
+          "prix_unitaire_fcfa": 6100,
+          "sous_total_fcfa": 12200
+        },
+        {
+          "produit_id": "P15",
+          "produit": "Disque dur externe Seagate 1 To",
+          "quantite": 1,
+          "prix_unitaire_fcfa": 37600,
+          "sous_total_fcfa": 37600
+        },
+        {
+          "produit_id": "P28",
+          "produit": "Micro-ondes Samsung 23 L",
+          "quantite": 1,
+          "prix_unitaire_fcfa": 67200,
+          "sous_total_fcfa": 67200
+        }
+      ]
+    },
+    "Baobab Shop": {
+      "total_fcfa": 491500,
+      "articles_indisponibles": [],
+      "lignes": [
+        {
+          "produit_id": "P04",
+          "produit": "Tecno Spark 20 128 Go",
+          "quantite": 1,
+          "prix_unitaire_fcfa": 75000,
+          "sous_total_fcfa": 75000
+        },
+        {
+          "produit_id": "P12",
+          "produit": "Lenovo IdeaPad 3 Core i3 8 Go 256 Go",
+          "quantite": 1,
+          "prix_unitaire_fcfa": 298200,
+          "sous_total_fcfa": 298200
+        },
+        {
+          "produit_id": "P14",
+          "produit": "Clé USB SanDisk 64 Go",
+          "quantite": 2,
+          "prix_unitaire_fcfa": 7300,
+          "sous_total_fcfa": 14600
+        },
+        {
+          "produit_id": "P15",
+          "produit": "Disque dur externe Seagate 1 To",
+          "quantite": 1,
+          "prix_unitaire_fcfa": 38300,
+          "sous_total_fcfa": 38300
+        },
+        {
+          "produit_id": "P28",
+          "produit": "Micro-ondes Samsung 23 L",
+          "quantite": 1,
+          "prix_unitaire_fcfa": 65400,
+          "sous_total_fcfa": 65400
+        }
+      ]
+    },
+    "Comptoir Ivoire": {
+      "total_fcfa": 484075,
+      "articles_indisponibles": [],
+      "lignes": [
+        {
+          "produit_id": "P04",
+          "produit": "Tecno Spark 20 128 Go",
+          "quantite": 1,
+          "prix_unitaire_fcfa": 76300,
+          "sous_total_fcfa": 76300
+        },
+        {
+          "produit_id": "P12",
+          "produit": "Lenovo IdeaPad 3 Core i3 8 Go 256 Go",
+          "quantite": 1,
+          "prix_unitaire_fcfa": 287375,
+          "sous_total_fcfa": 287375
+        },
+        {
+          "produit_id": "P14",
+          "produit": "Clé USB SanDisk 64 Go",
+          "quantite": 2,
+          "prix_unitaire_fcfa": 6200,
+          "sous_total_fcfa": 12400
+        },
+        {
+          "produit_id": "P15",
+          "produit": "Disque dur externe Seagate 1 To",
+          "quantite": 1,
+          "prix_unitaire_fcfa": 39500,
+          "sous_total_fcfa": 39500
+        },
+        {
+          "produit_id": "P28",
+          "produit": "Micro-ondes Samsung 23 L",
+          "quantite": 1,
+          "prix_unitaire_fcfa": 68500,
+          "sous_total_fcfa": 68500
+        }
+      ]
+    }
+  },
+  "panier_multi_enseignes": {
+    "total_fcfa": 477575,
+    "plan_achat": [
+      {
+        "produit_id": "P04",
+        "produit": "Tecno Spark 20 128 Go",
+        "quantite": 1,
+        "enseigne": "Baobab Shop",
+        "prix_unitaire_fcfa": 75000,
+        "sous_total_fcfa": 75000
+      },
+      {
+        "produit_id": "P12",
+        "produit": "Lenovo IdeaPad 3 Core i3 8 Go 256 Go",
+        "quantite": 1,
+        "enseigne": "Comptoir Ivoire",
+        "prix_unitaire_fcfa": 287375,
+        "sous_total_fcfa": 287375
+      },
+      {
+        "produit_id": "P14",
+        "produit": "Clé USB SanDisk 64 Go",
+        "quantite": 2,
+        "enseigne": "Marché Lagune",
+        "prix_unitaire_fcfa": 6100,
+        "sous_total_fcfa": 12200
+      },
+      {
+        "produit_id": "P15",
+        "produit": "Disque dur externe Seagate 1 To",
+        "quantite": 1,
+        "enseigne": "Marché Lagune",
+        "prix_unitaire_fcfa": 37600,
+        "sous_total_fcfa": 37600
+      },
+      {
+        "produit_id": "P28",
+        "produit": "Micro-ondes Samsung 23 L",
+        "quantite": 1,
+        "enseigne": "Baobab Shop",
+        "prix_unitaire_fcfa": 65400,
+        "sous_total_fcfa": 65400
+      }
+    ]
+  }
+}

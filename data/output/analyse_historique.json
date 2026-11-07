@@ -1,0 +1,28 @@
+{
+  "periode": "2025-11-01 au 2026-10-31",
+  "semaine_black_friday": "2025-11-24 au 2025-11-30",
+  "resultats_par_enseigne": {
+    "Marché Lagune": {
+      "nombre_observations_annuelles": 10220,
+      "prix_moyen_annuel_fcfa": 161977.91,
+      "nombre_observations_black_friday": 196,
+      "prix_moyen_black_friday_fcfa": 143894.39,
+      "variation_bf_vs_moyenne_pct": -11.16
+    },
+    "Baobab Shop": {
+      "nombre_observations_annuelles": 9490,
+      "prix_moyen_annuel_fcfa": 140913.4,
+      "nombre_observations_black_friday": 182,
+      "prix_moyen_black_friday_fcfa": 124579.12,
+      "variation_bf_vs_moyenne_pct": -11.59
+    },
+    "Comptoir Ivoire": {
+      "nombre_observations_annuelles": 1166,
+      "prix_moyen_annuel_fcfa": 154842.88,
+      "nombre_observations_black_friday": 22,
+      "prix_moyen_black_friday_fcfa": 160604.55,
+      "variation_bf_vs_moyenne_pct": 3.72
+    }
+  },
+  "note": "Pour Comptoir Ivoire, l'historique contient le prix catalogue sans remise, conformément au fichier LISEZ-MOI."
+}
