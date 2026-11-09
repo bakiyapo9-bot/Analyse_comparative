@@ -1,15 +1,19 @@
-﻿"""SynthÃ¨se : qui gagne le plus souvent ? quels produits ont le plus gros Ã©cart ?"""
+﻿"""Synthèse : qui gagne le plus souvent ? quels produits ont le plus gros écart ?"""
 from src.comparatif import SOURCES
 
 
 def calculer_synthese(comparatif):
-    victoires = {}                              # {boutique: nombre de victoires}
-    ecarts = {source: [] for source in SOURCES}  # {boutique: [Ã©cart avec le meilleur prix]}
+    victoires = {}                              # {boutique: part de victoires}
+    ecarts = {source: [] for source in SOURCES}  # {boutique: [écart avec le meilleur prix]}
     gains = []
 
     for ligne in comparatif:
-        for gagnant in ligne["meilleure_enseigne"].split(" / "):
-            victoires[gagnant] = victoires.get(gagnant, 0) + 1
+        # Chaque produit donne 1 victoire au total.
+        # En cas d'égalité, cette victoire est partagée entre les gagnants.
+        gagnants = ligne["meilleure_enseigne"].split(" / ")
+        part = 1 / len(gagnants)
+        for gagnant in gagnants:
+            victoires[gagnant] = victoires.get(gagnant, 0) + part
 
         meilleur_prix = ligne["meilleur_prix_fcfa"]
         for source in SOURCES:
@@ -20,6 +24,9 @@ def calculer_synthese(comparatif):
         gains.append({"produit_id": ligne["produit_id"], "produit": ligne["produit"],
                       "gain_fcfa": ligne["ecart_max_min_fcfa"],
                       "gain_pct_vs_min": ligne["ecart_pct_vs_min"]})
+
+    # Arrondi pour éviter les nombres du type 9.333333 (le total reste égal au nombre de produits)
+    victoires = {nom: round(v, 2) for nom, v in victoires.items()}
 
     ecart_moyen = {}
     for source, liste in ecarts.items():

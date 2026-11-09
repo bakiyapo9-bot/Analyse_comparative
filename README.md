@@ -25,7 +25,6 @@ Application Python de comparaison de trois enseignes à partir de fichiers CSV, 
 │   ├── test_nettoyage.py
 │   └── test_rapprochement.py
 ├── config.py
-├── console.py
 ├── data
 │   ├── raw
 │   │   ├── baobab_shop.json
