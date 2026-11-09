@@ -1,26 +1,59 @@
-PANIER={"P04":1,"P12":1,"P14":2,"P15":1,"P28":1}
+﻿"""Panier : combien coÃ»te un panier type dans chaque boutique ?"""
+from src.comparatif import regrouper_prix, SOURCES
+
+# produit -> quantitÃ© achetÃ©e
+PANIER = {"P04": 1, "P12": 1, "P14": 2, "P15": 1, "P28": 1}
+
 
 def simuler_panier(offres, catalogue):
-    prix={}
-    for o in offres:
-        if o.get("produit_id") and o.get("disponible") and o.get("prix_paye") is not None:
-            prix.setdefault(o["produit_id"],{})[o["source"]]=o["prix_paye"]
-    totaux={}; details={}
-    for source in ("Marché Lagune","Baobab Shop","Comptoir Ivoire"):
-        total=0; manquants=[]; lignes=[]
-        for pid,qte in PANIER.items():
-            p=prix.get(pid,{}).get(source)
-            if p is None: manquants.append(pid)
-            else: total+=p*qte
-            lignes.append({"produit_id":pid,"produit":catalogue[pid]["nom"],"quantite":qte,"prix_unitaire_fcfa":p,"sous_total_fcfa":p*qte if p is not None else None})
-        totaux[source]=total if not manquants else None
-        details[source]={"total_fcfa":totaux[source],"articles_indisponibles":manquants,"lignes":lignes}
-    meilleur_total=0; plan=[]
-    for pid,qte in PANIER.items():
-        options=prix.get(pid,{})
+    prix = regrouper_prix(offres)
+
+    # Partie 1 : total du panier dans chaque boutique
+    totaux = {}
+    for source in SOURCES:
+        total = 0
+        manquants = []
+        lignes = []
+        for pid, quantite in PANIER.items():
+            prix_unitaire = prix.get(pid, {}).get(source)
+            sous_total = None
+            if prix_unitaire is None:
+                manquants.append(pid)          # la boutique n'a pas cet article
+            else:
+                sous_total = prix_unitaire * quantite
+                total = total + sous_total
+            lignes.append({"produit_id": pid, "produit": catalogue[pid]["nom"],
+                           "quantite": quantite, "prix_unitaire_fcfa": prix_unitaire,
+                           "sous_total_fcfa": sous_total})
+        # Si un article manque, le total n'a pas de sens -> None
+        totaux[source] = {"total_fcfa": total if not manquants else None,
+                          "articles_indisponibles": manquants, "lignes": lignes}
+
+    # Partie 2 : acheter chaque article dans la boutique la moins chÃ¨re
+    total_multi = 0
+    plan = []
+    complet = True
+    for pid, quantite in PANIER.items():
+        options = prix.get(pid, {})
         if not options:
-            plan.append({"produit_id":pid,"quantite":qte,"enseigne":None,"prix_unitaire_fcfa":None}); continue
-        source,p=min(options.items(),key=lambda x:x[1]); meilleur_total+=p*qte
-        plan.append({"produit_id":pid,"produit":catalogue[pid]["nom"],"quantite":qte,"enseigne":source,"prix_unitaire_fcfa":p,"sous_total_fcfa":p*qte})
-    complet=all(x.get("enseigne") for x in plan)
-    return {"composition":PANIER,"totaux_par_enseigne":details,"panier_multi_enseignes":{"total_fcfa":meilleur_total if complet else None,"plan_achat":plan}}
+            complet = False
+            plan.append({"produit_id": pid, "quantite": quantite,
+                         "enseigne": None, "prix_unitaire_fcfa": None})
+            continue
+
+        meilleure_source = None
+        meilleur_prix = None
+        for source, p in options.items():
+            if meilleur_prix is None or p < meilleur_prix:
+                meilleure_source = source
+                meilleur_prix = p
+
+        total_multi = total_multi + meilleur_prix * quantite
+        plan.append({"produit_id": pid, "produit": catalogue[pid]["nom"], "quantite": quantite,
+                     "enseigne": meilleure_source, "prix_unitaire_fcfa": meilleur_prix,
+                     "sous_total_fcfa": meilleur_prix * quantite})
+
+    return {"composition": PANIER,
+            "totaux_par_enseigne": totaux,
+            "panier_multi_enseignes": {"total_fcfa": total_multi if complet else None,
+                                       "plan_achat": plan}}

@@ -113,34 +113,34 @@
     "source": "Marché Lagune",
     "reference": "ML-1070",
     "nom_brut": "PC PORTABLE HP 250 G9 I5 8GB/512GB",
-    "nom_normalise": "pc portable hp 250 g9 i5 8gb 512 go",
+    "nom_normalise": "pc portable hp 250 g9 i5 8 go 512 go",
     "prix_paye": 390800,
     "disponible": true,
     "raison_indisponibilite": "",
     "produit_id": "P11",
-    "score_rapprochement": 0.6875
+    "score_rapprochement": 0.7385
   },
   {
     "source": "Marché Lagune",
     "reference": "ML-1077",
     "nom_brut": "PC PORTABLE LENOVO IDEAPAD 3 I3 8GB/256GB",
-    "nom_normalise": "pc portable lenovo ideapad 3 i3 8gb 256 go",
+    "nom_normalise": "pc portable lenovo ideapad 3 i3 8 go 256 go",
     "prix_paye": 309400,
     "disponible": true,
     "raison_indisponibilite": "",
     "produit_id": "P12",
-    "score_rapprochement": 0.7436
+    "score_rapprochement": 0.7848
   },
   {
     "source": "Marché Lagune",
     "reference": "ML-1084",
     "nom_brut": "PC PORTABLE DELL INSPIRON 15 I5 16GB/512GB",
-    "nom_normalise": "pc portable dell inspiron 15 i5 16gb 512 go",
+    "nom_normalise": "pc portable dell inspiron 15 i5 16 go 512 go",
     "prix_paye": 442900,
     "disponible": false,
     "raison_indisponibilite": "rupture",
     "produit_id": "P13",
-    "score_rapprochement": 0.75
+    "score_rapprochement": 0.7901
   },
   {
     "source": "Marché Lagune",
@@ -428,27 +428,27 @@
     "source": "Baobab Shop",
     "reference": "BB11833",
     "nom_brut": "HP Laptop 250 G9 (i5, 8GB, 512GB SSD)",
-    "nom_normalise": "hp laptop 250 g9 i5 8gb 512 go ssd",
+    "nom_normalise": "hp laptop 250 g9 i5 8 go 512 go ssd",
     "prix_paye": 354200,
     "disponible": true,
     "raison_indisponibilite": "",
     "prix_article": 354200,
     "livraison": 0,
     "produit_id": "P11",
-    "score_rapprochement": 0.6984
+    "score_rapprochement": 0.75
   },
   {
     "source": "Baobab Shop",
     "reference": "BB12319",
     "nom_brut": "Lenovo IdeaPad 3 (i3, 8GB, 256GB SSD)",
-    "nom_normalise": "lenovo ideapad 3 i3 8gb 256 go ssd",
+    "nom_normalise": "lenovo ideapad 3 i3 8 go 256 go ssd",
     "prix_paye": 298200,
     "disponible": true,
     "raison_indisponibilite": "",
     "prix_article": 298200,
     "livraison": 0,
     "produit_id": "P12",
-    "score_rapprochement": 0.8286
+    "score_rapprochement": 0.8732
   },
   {
     "source": "Baobab Shop",

@@ -46,6 +46,7 @@ class ApplicationAnalyseComparative(ctk.CTk):
 
         self.page_actuelle = None
         self.nav_buttons = {}
+        self.dernieres_performances = None
         # Valeurs par défaut disponibles dès le premier affichage de l'accueil.
         self.nombre_produits = 0
         self.nombre_victoires = 0
@@ -90,7 +91,8 @@ class ApplicationAnalyseComparative(ctk.CTk):
         ctk.CTkLabel(self.sidebar, text="ESPACE DE TRAVAIL", text_color="#8293AF",
                      font=ctk.CTkFont(size=10, weight="bold")).pack(anchor="w", padx=22, pady=(0, 10))
         pages = ["Accueil", "Comparatif", "Synthèse", "Panier",
-                 "Historique", "Anomalies", "Sources & fichiers", "Tests"]
+                 "Historique", "Anomalies", "Sources & fichiers", "Tests",
+                 "Performances et complexité"]
         for nom in pages:
             bouton = ctk.CTkButton(
                 self.sidebar, text=nom, anchor="w", height=42,
@@ -181,6 +183,7 @@ class ApplicationAnalyseComparative(ctk.CTk):
             "Anomalies": "Contrôle qualité des données importées",
             "Sources & fichiers": "Vérification des fichiers et accès aux résultats",
             "Tests": "Contrôle automatique des modules du projet",
+            "Performances et complexité": "Temps d'exécution et mémoire utilisée par les étapes du pipeline",
         }
         self.sous_titre.configure(text=descriptions.get(nom, ""))
         self._vider_contenu()
@@ -193,6 +196,7 @@ class ApplicationAnalyseComparative(ctk.CTk):
             "Anomalies": self.page_anomalies,
             "Sources & fichiers": self.page_sources,
             "Tests": self.page_tests,
+            "Performances et complexité": self.page_performances,
         }
         pages[nom]()
 
@@ -492,6 +496,119 @@ class ApplicationAnalyseComparative(ctk.CTk):
         self.zone_tests.insert("1.0", "Les résultats des tests apparaîtront ici.")
         self.zone_tests.configure(state="disabled")
 
+    # --------------------------------------------------------- Performances
+    def page_performances(self):
+        """Affiche les produits traités, le temps et la mémoire par étape."""
+        resultats = self.dernieres_performances or {}
+        temps = resultats.get("temps_execution", {})
+        memoire = resultats.get("memoire_execution", {})
+        nombres = resultats.get("nombre_produits_execution", {})
+        temps_total = resultats.get("temps_total")
+        memoire_max = resultats.get("memoire_max_etape_mo")
+
+        self._titre_section(
+            self.contenu,
+            "Performances et complexité",
+            "Nombre de produits traités, temps d'exécution et mémoire maximale par étape.",
+        )
+
+        if not temps and not memoire and temps_total is None:
+            self._message_vide(
+                "Aucune mesure disponible. Lancez l'analyse complète pour mesurer "
+                "le nombre de produits, le temps et la mémoire de chaque étape."
+            )
+            return
+
+        resume = ctk.CTkFrame(
+            self.contenu, fg_color=COULEUR_CARTE, corner_radius=12,
+            border_width=1, border_color=COULEUR_BORDURE
+        )
+        resume.pack(fill="x", pady=(4, 14))
+        resume.grid_columnconfigure((0, 1), weight=1)
+
+        valeur_totale = (
+            f"{float(temps_total):.6f} seconde(s)"
+            if isinstance(temps_total, (int, float)) else "Non disponible"
+        )
+        ctk.CTkLabel(
+            resume, text="TEMPS TOTAL DU PIPELINE", text_color=COULEUR_SECONDAIRE,
+            font=ctk.CTkFont(size=10, weight="bold")
+        ).grid(row=0, column=0, sticky="w", padx=16, pady=(12, 3))
+        ctk.CTkLabel(
+            resume, text=valeur_totale, text_color=COULEUR_ACCENT,
+            font=ctk.CTkFont(size=22, weight="bold")
+        ).grid(row=1, column=0, sticky="w", padx=16, pady=(0, 12))
+
+        valeur_memoire = (
+            f"{float(memoire_max):.6f} Mo"
+            if isinstance(memoire_max, (int, float)) else "Non disponible"
+        )
+        ctk.CTkLabel(
+            resume, text="PIC MAXIMAL MESURÉ PAR ÉTAPE", text_color=COULEUR_SECONDAIRE,
+            font=ctk.CTkFont(size=10, weight="bold")
+        ).grid(row=0, column=1, sticky="w", padx=16, pady=(12, 3))
+        ctk.CTkLabel(
+            resume, text=valeur_memoire, text_color=COULEUR_ACCENT,
+            font=ctk.CTkFont(size=22, weight="bold")
+        ).grid(row=1, column=1, sticky="w", padx=16, pady=(0, 12))
+
+        self._titre_section(
+            self.contenu, "Détail par étape",
+            "Le nombre correspond aux éléments réellement transmis à chaque traitement. "
+            "Pour l'historique et le benchmark, il s'agit d'observations historiques."
+        )
+        colonnes = (
+            "Algorithme / étape",
+            "Nombre de produits",
+            "Temps d'exécution (s)",
+            "Mémoire maximale (Mo)",
+        )
+        tree = self._creer_tableau(self.contenu, colonnes, 12)
+        tree.column("Algorithme / étape", width=210, minwidth=170)
+        tree.column("Nombre de produits", width=150, minwidth=125, anchor="center")
+        tree.column("Temps d'exécution (s)", width=170, minwidth=145, anchor="center")
+        tree.column("Mémoire maximale (Mo)", width=180, minwidth=155, anchor="center")
+
+        if isinstance(temps, dict):
+            for nom, duree in temps.items():
+                nom_affiche = str(nom).strip()
+                if nom_affiche.casefold() == "benchmark":
+                    continue
+
+                if "Ã" in nom_affiche or "Â" in nom_affiche:
+                    try:
+                        nom_affiche = nom_affiche.encode("latin-1").decode("utf-8")
+                    except (UnicodeEncodeError, UnicodeDecodeError):
+                        pass
+
+                try:
+                    temps_affiche = f"{float(duree):.6f}"
+                except (TypeError, ValueError):
+                    temps_affiche = str(duree)
+
+                nombre = nombres.get(nom, 0) if isinstance(nombres, dict) else 0
+                try:
+                    nombre_affiche = f"{int(nombre):,}".replace(",", " ")
+                except (TypeError, ValueError):
+                    nombre_affiche = str(nombre)
+
+                valeur_memoire_etape = memoire.get(nom, 0.0) if isinstance(memoire, dict) else 0.0
+                try:
+                    memoire_affichee = f"{float(valeur_memoire_etape):.6f}"
+                except (TypeError, ValueError):
+                    memoire_affichee = str(valeur_memoire_etape)
+
+                tree.insert(
+                    "", "end",
+                    values=(nom_affiche, nombre_affiche, temps_affiche, memoire_affichee)
+                )
+        else:
+            ctk.CTkLabel(
+                self.contenu,
+                text="Le champ 'temps_execution' doit être un dictionnaire (nom : durée).",
+                text_color=COULEUR_SECONDAIRE,
+            ).pack(anchor="w", pady=8)
+
     def _message_vide(self, message):
         cadre = ctk.CTkFrame(self.contenu, fg_color=COULEUR_CARTE, corner_radius=12)
         cadre.pack(fill="x", pady=20)
@@ -514,14 +631,16 @@ class ApplicationAnalyseComparative(ctk.CTk):
                 message = (f"Analyse terminée : {len(resultats['comparatif'])} produits comparables.\n"
                            f"Victoires : {resultats['synthese']['victoires_enseigne']}\n"
                            f"Résultats enregistrés dans data/output.")
-                self.after(0, lambda: self._fin_analyse(True, message))
+                self.after(0, lambda r=resultats: self._fin_analyse(True, message, r))
             except Exception as erreur:
                 self.after(0, lambda e=str(erreur): self._fin_analyse(False, e))
 
         threading.Thread(target=travail, daemon=True).start()
 
-    def _fin_analyse(self, succes, message):
+    def _fin_analyse(self, succes, message, resultats=None):
         self._verrouiller_actions(False)
+        if succes and resultats is not None:
+            self.dernieres_performances = resultats
         self.actualiser_page()
         if succes:
             self._statut("Analyse terminée avec succès.")

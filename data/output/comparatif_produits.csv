@@ -1,24 +1,24 @@
-﻿produit_id;produit;Marché Lagune;Baobab Shop;Comptoir Ivoire;meilleure_enseigne;meilleur_prix_fcfa;prix_moyen_fcfa;ecart_max_min_fcfa;ecart_pct_vs_min
-P01;Samsung Galaxy A15 128 Go;;104000;92990;Comptoir Ivoire;92990;98495;11010;11.84
-P02;Samsung Galaxy A25 128 Go;151500;142000;150300;Baobab Shop;142000;147933;9500;6.69
-P04;Tecno Spark 20 128 Go;;75000;76300;Baobab Shop;75000;75650;1300;1.73
-P05;Tecno Camon 30 256 Go;136900;135400;;Baobab Shop;135400;136150;1500;1.11
-P06;Infinix Hot 40i 128 Go;69200;69500;67165;Comptoir Ivoire;67165;68622;2335;3.48
-P07;Infinix Note 40 256 Go;132400;132700;;Marché Lagune;132400;132550;300;0.23
-P09;Apple iPhone 13 128 Go;433700;417200;443700;Baobab Shop;417200;431533;26500;6.35
-P10;Xiaomi Redmi Note 13 128 Go;136900;134100;;Baobab Shop;134100;135500;2800;2.09
-P11;HP 250 G9 Core i5 8 Go 512 Go;390800;354200;407000;Baobab Shop;354200;384000;52800;14.91
-P12;Lenovo IdeaPad 3 Core i3 8 Go 256 Go;309400;298200;287375;Comptoir Ivoire;287375;298325;22025;7.66
-P14;Clé USB SanDisk 64 Go;6100;7300;6200;Marché Lagune;6100;6533;1200;19.67
-P15;Disque dur externe Seagate 1 To;37600;38300;39500;Marché Lagune;37600;38467;1900;5.05
-P16;Souris sans fil Logitech M185;9200;;9200;Marché Lagune / Comptoir Ivoire;9200;9200;0;0.0
-P17;Imprimante HP DeskJet 2720e;44000;45700;;Marché Lagune;44000;44850;1700;3.86
-P20;Réfrigérateur Hisense 205 L;186100;183000;168385;Comptoir Ivoire;168385;179162;17715;10.52
-P21;Congélateur Nasco 200 L;176000;;151725;Comptoir Ivoire;151725;163862;24275;16.0
-P22;TV Samsung 43 pouces Crystal UHD;251100;244400;;Baobab Shop;244400;247750;6700;2.74
-P23;TV Hisense 32 pouces;;96000;88740;Comptoir Ivoire;88740;92370;7260;8.18
-P24;Climatiseur LG 1 CV;256600;253300;279300;Baobab Shop;253300;263067;26000;10.26
-P26;Mixeur Moulinex 1,5 L;;30900;29200;Comptoir Ivoire;29200;30050;1700;5.82
-P27;Fer à repasser Philips;15700;;15700;Marché Lagune / Comptoir Ivoire;15700;15700;0;0.0
-P28;Micro-ondes Samsung 23 L;67200;65400;68500;Baobab Shop;65400;67033;3100;4.74
-P29;Bouilloire électrique 1,7 L;;11600;9200;Comptoir Ivoire;9200;10400;2400;26.09
+﻿produit_id;produit;Marché Lagune;Baobab Shop;Comptoir Ivoire;meilleure_enseigne;meilleur_prix_fcfa;prix_moyen_fcfa;ecart_moyen_vs_meilleur_fcfa;ecart_moyen_pct;ecart_max_min_fcfa;ecart_pct_vs_min
+P01;Samsung Galaxy A15 128 Go;;104000;92990;Comptoir Ivoire;92990;98495;5505;5.59;11010;11.84
+P02;Samsung Galaxy A25 128 Go;151500;142000;150300;Baobab Shop;142000;147933;5933;4.01;9500;6.69
+P04;Tecno Spark 20 128 Go;;75000;76300;Baobab Shop;75000;75650;650;0.86;1300;1.73
+P05;Tecno Camon 30 256 Go;136900;135400;;Baobab Shop;135400;136150;750;0.55;1500;1.11
+P06;Infinix Hot 40i 128 Go;69200;69500;67165;Comptoir Ivoire;67165;68622;1457;2.12;2335;3.48
+P07;Infinix Note 40 256 Go;132400;132700;;Marché Lagune;132400;132550;150;0.11;300;0.23
+P09;Apple iPhone 13 128 Go;433700;417200;443700;Baobab Shop;417200;431533;14333;3.32;26500;6.35
+P10;Xiaomi Redmi Note 13 128 Go;136900;134100;;Baobab Shop;134100;135500;1400;1.03;2800;2.09
+P11;HP 250 G9 Core i5 8 Go 512 Go;390800;354200;407000;Baobab Shop;354200;384000;29800;7.76;52800;14.91
+P12;Lenovo IdeaPad 3 Core i3 8 Go 256 Go;309400;298200;287375;Comptoir Ivoire;287375;298325;10950;3.67;22025;7.66
+P14;Clé USB SanDisk 64 Go;6100;7300;6200;Marché Lagune;6100;6533;433;6.63;1200;19.67
+P15;Disque dur externe Seagate 1 To;37600;38300;39500;Marché Lagune;37600;38467;867;2.25;1900;5.05
+P16;Souris sans fil Logitech M185;9200;;9200;Marché Lagune / Comptoir Ivoire;9200;9200;0;0.0;0;0.0
+P17;Imprimante HP DeskJet 2720e;44000;45700;;Marché Lagune;44000;44850;850;1.9;1700;3.86
+P20;Réfrigérateur Hisense 205 L;186100;183000;168385;Comptoir Ivoire;168385;179162;10777;6.02;17715;10.52
+P21;Congélateur Nasco 200 L;176000;;151725;Comptoir Ivoire;151725;163862;12138;7.41;24275;16.0
+P22;TV Samsung 43 pouces Crystal UHD;251100;244400;;Baobab Shop;244400;247750;3350;1.35;6700;2.74
+P23;TV Hisense 32 pouces;;96000;88740;Comptoir Ivoire;88740;92370;3630;3.93;7260;8.18
+P24;Climatiseur LG 1 CV;256600;253300;279300;Baobab Shop;253300;263067;9767;3.71;26000;10.26
+P26;Mixeur Moulinex 1,5 L;;30900;29200;Comptoir Ivoire;29200;30050;850;2.83;1700;5.82
+P27;Fer à repasser Philips;15700;;15700;Marché Lagune / Comptoir Ivoire;15700;15700;0;0.0;0;0.0
+P28;Micro-ondes Samsung 23 L;67200;65400;68500;Baobab Shop;65400;67033;1633;2.44;3100;4.74
+P29;Bouilloire électrique 1,7 L;;11600;9200;Comptoir Ivoire;9200;10400;1200;11.54;2400;26.09
